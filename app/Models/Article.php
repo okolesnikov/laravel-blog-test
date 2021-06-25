@@ -6,7 +6,8 @@ use App\Models\Traits\Slug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
@@ -25,9 +26,14 @@ class Article extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function comments(): BelongsTo
+    public function comments(): hasMany
     {
-        return $this->belongsTo(Comment::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getTextPreviewAttribute(): string
+    {
+        return Str::limit($this->text);
     }
 
     public static function boot()

@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::post('/article/comment/{article}', [\App\Http\Controllers\Api\ArticleController::class, 'comment']);
+Route::post('/article/likes/{article}', [\App\Http\Controllers\Api\ArticleController::class, 'likes']);
+Route::post('/article/views/{article}', [\App\Http\Controllers\Api\ArticleController::class, 'views']);

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ArticleFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Article::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +22,7 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->realText(100),
-            'text' => $this->faker->realTextBetween(200, 1000),
-            'img_preview' => $this->faker->imageUrl(),
-            'img_detail' => $this->faker->imageUrl(1280, 960),
+            'title' => $this->faker->unique()->word(),
             'created_at' => $this->faker->dateTime(),
         ];
     }
