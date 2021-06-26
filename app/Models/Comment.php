@@ -14,7 +14,7 @@ class Comment extends Model
     protected $fillable = [
         'subject',
         'body',
-        'article_id'
+        'article_id',
     ];
 
     protected $hidden = [

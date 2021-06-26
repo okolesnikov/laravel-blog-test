@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Slug;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -39,6 +40,10 @@ class Article extends Model
     public static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('created_at', 'desc');
+        });
 
         static::creating(function ($model) {
             $model->slug = self::get($model->title);
